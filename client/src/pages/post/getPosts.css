@@ -157,3 +157,35 @@ select {
     padding: 6px 12px;
     font-size: 1rem;
 }
+
+/* ======================== RESPONSIVE ======================== */
+@media (max-width: 768px) {
+    .posts-page {
+        padding: var(--space-sm);
+    }
+
+    .posts {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        margin-top: var(--space-md);
+    }
+
+    .filter-bar {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .posts {
+        grid-template-columns: 1fr;
+    }
+
+    .posts-page .section--title {
+        text-align: left;
+        font-size: 1.2rem;
+    }
+
+    .actions-buttons {
+        flex-wrap: wrap;
+    }
+}

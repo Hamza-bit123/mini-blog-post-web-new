@@ -283,7 +283,13 @@ const updatePost = async (req, res) => {
 
     await conn.commit();
 
-    if (req.file) {
+    // if (req.file) {
+    //   const oldImagePath = path.join(__dirname, "../uploads", post[0].image);
+    //   fs.unlink(oldImagePath, (err) => {
+    //     if (err) console.log("error: " + err.message);
+    //   });
+    // }
+    if (req.file && post[0].image) {
       const oldImagePath = path.join(__dirname, "../uploads", post[0].image);
       fs.unlink(oldImagePath, (err) => {
         if (err) console.log("error: " + err.message);

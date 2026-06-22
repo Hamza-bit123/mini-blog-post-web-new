@@ -1,10 +1,11 @@
+/* ======================== DESIGN TOKENS ======================== */
 :root {
     /* color */
     --primary: #111827;
     --secondary: #030712;
     --card: #1F2937;
     --text-color: #D1D5DB;
-    --text-color-light: #d1d5db1d;
+    --text-color-light: rgba(209, 213, 219, 0.11);
     --heading: #F9FAFB;
     --accent: #22C55E;
 
@@ -23,11 +24,13 @@
     --text-size-xxl: 3rem;
 }
 
-.light {
+/* Light theme applied on <html class="light"> */
+html.light {
     --primary: #FFFFFF;
     --secondary: #F9FAFB;
-    --card: #F3F4F6;
+    --card: #E5E7EB;
     --text-color: #374151;
+    --text-color-light: rgba(55, 65, 81, 0.11);
     --heading: #111827;
     --accent: #2563EB;
 }
@@ -40,89 +43,51 @@
 
 body {
     color: var(--text-color);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
     background-color: var(--secondary);
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
+/* ======================== LAYOUT ======================== */
 .layout {
     display: flex;
+    min-height: 100vh;
 }
 
 .outlet {
     flex: 1;
+    min-width: 0;
+    overflow-x: hidden;
 }
 
+.main--section {
+    flex: 1;
+    min-width: 0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ======================== BUTTONS ======================== */
 button {
     border: none;
     cursor: pointer;
     padding: 8px 15px;
-    border: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     border-radius: 5px;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 button:hover {
-    transform: scale(0.9);
+    transform: scale(0.97);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* home page */
-/* header */
-/*
-.header {
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 var(--space-md);
-    position: sticky;
-    top: 0;
-    border-bottom: 1px solid var(--primary);
-    background-color: var(--secondary);
-    z-index: 10;
-}
-
-.header .logo {
-    color: var(--accent);
-    font-weight: 600;
-    font-size: 1.2rem;
-}
-
-.header--buttons {
-    display: flex;
-    gap: var(--space-sm);
-    align-content: center;
-}
-
-.header--buttons button {
-    font-size: var(--text-size-sm);
-    font-weight: 600;
-}
-
-.header--buttons button:first-child {
-    background: transparent;
-    color: var(--text-color);
-}
-
-.header--buttons button:first-child:hover {
-    background-color: var(--accent);
-    color: var(--primary);
-}
-
-.header--buttons button:last-child {
-    background-color: var(--accent);
-    color: var(--primary);
-}
-
-/* Hero section */
-/* section {
-    margin-bottom: var(--space-xxl);
-} */
-
+/* ======================== HOME PAGE ======================== */
 .hero--section {
-    min-height: 85vh;
-    padding: var(--space-sm);
+    min-height: 80vh;
+    padding: var(--space-lg) var(--space-sm);
     background-color: var(--secondary);
     display: flex;
     flex-direction: column;
@@ -134,16 +99,17 @@ button:hover {
     flex-direction: column;
     gap: var(--space-lg);
     margin: auto;
-    padding: 0px var(--space-md);
+    padding: 0 var(--space-md);
     width: 100%;
+    max-width: 900px;
 }
 
 .hero--title {
     color: var(--heading);
     text-align: center;
-    line-height: 1.5;
-    font-size: var(--text-size-xl);
-    font-weight: bolder;
+    line-height: 1.2;
+    font-size: clamp(1.8rem, 5vw, var(--text-size-xl));
+    font-weight: 800;
 }
 
 .hero--section span {
@@ -153,12 +119,14 @@ button:hover {
 .hero--description {
     text-align: center;
     max-width: 600px;
-    line-height: 1.5;
+    line-height: 1.6;
     margin: auto;
+    font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .hero--buttons {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--space-sm);
     align-items: center;
     justify-content: center;
@@ -176,35 +144,37 @@ button:hover {
     color: var(--text-color);
 }
 
-/* Features section */
+/* ======================== FEATURES ======================== */
 .features--section {
     background-color: var(--primary);
     display: flex;
     flex-direction: column;
     gap: var(--space-xxl);
-    padding: 5rem var(--space-md);
+    padding: 4rem var(--space-md);
     margin-top: var(--space-xxl);
 }
 
 .section--title {
     text-align: center;
     color: var(--heading);
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
 }
 
 .features--grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: var(--space-md);
 }
 
 .feature--card {
-    padding: var(--space-xl)var(--space-md);
-    border-radius: 10px;
+    padding: var(--space-xl) var(--space-md);
+    border-radius: 12px;
     background-color: var(--card);
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    gap: var(--space-md);
     align-items: center;
+    transition: box-shadow 0.25s ease;
 }
 
 .feature--icon {
@@ -213,16 +183,25 @@ button:hover {
     background-color: rgba(90, 189, 255, 0.2);
     width: 50px;
     height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature--card .card--title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--heading);
 }
 
 .feature--card .card--description {
     text-align: center;
     font-size: 0.9rem;
-    opacity: 0.9;
-    line-height: 1.5;
+    opacity: 0.85;
+    line-height: 1.6;
 }
 
-/* posts */
+/* ======================== POSTS SECTION (HOME) ======================== */
 .posts--section {
     padding: var(--space-md);
 }
@@ -232,7 +211,7 @@ hr {
     margin-top: var(--space-md);
 }
 
-.posts--section>div:last-child {
+.posts--section > div:last-child {
     margin-top: var(--space-lg);
     display: flex;
     width: 100%;
@@ -247,16 +226,15 @@ hr {
     margin: auto;
 }
 
-/* testimonilas */
+/* ======================== TESTIMONIALS ======================== */
 .testimonials--section {
     background-color: var(--primary);
-    padding: 5rem var(--space-md);
-    margin-bottom: 0;
+    padding: 4rem var(--space-md);
 }
 
 .test--grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: var(--space-md);
     margin-top: var(--space-xl);
 }
@@ -266,98 +244,128 @@ hr {
     flex-direction: column;
     gap: var(--space-md);
     padding: var(--space-md);
-    border-radius: 10px;
+    border-radius: 12px;
     background-color: var(--card);
+    transition: box-shadow 0.25s ease;
 }
 
 .test--text {
-    line-height: 1.5;
+    line-height: 1.6;
+    font-size: 0.95rem;
 }
 
 .test--author {
     display: flex;
     gap: var(--space-sm);
     align-items: center;
-    justify-content: flex-start;
 }
 
 .avator {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background-color: var(--accent);
     color: var(--primary);
     text-align: center;
-    align-content: center;
+    line-height: 50px;
     font-weight: bold;
-    font-size: var(--text-size-md);
+    font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .author--info h4 {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
+    color: var(--heading);
 }
 
 .author--info p {
-    font-size: 0.9rem;
-    opacity: 0.9;
+    font-size: 0.85rem;
+    opacity: 0.85;
 }
 
-/* bottom--section */
+/* ======================== BOTTOM CTA ======================== */
 .bottom--section {
     background-color: var(--accent);
     padding: 4rem var(--space-md);
     display: flex;
-    width: 100%;
     flex-direction: column;
     gap: var(--space-md);
     align-items: center;
     justify-content: center;
     color: var(--primary);
-    margin: 0;
 }
 
 .bottom--section p {
-    width: 400px;
+    max-width: 450px;
     text-align: center;
-    line-height: 1.5;
-    font-size: 0.9rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
     opacity: 0.9;
 }
 
 .bottom--section button {
     background-color: var(--primary);
     color: var(--accent);
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
 }
 
-/* footer */
+/* ======================== FOOTER ======================== */
 .footer {
-    background-color: var(--text-color);
+    background-color: var(--card);
     padding: var(--space-md);
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 .footer p {
     text-align: center;
-    line-height: 1.15;
-    color: var(--primary);
-    font-size: 0.9rem;
-    opacity: 0.9;
+    color: var(--text-color);
+    font-size: 0.85rem;
+    opacity: 0.8;
 }
 
-/* side navigaton bar */
+/* ======================== HOVER EFFECTS ======================== */
+.post-card:hover,
+.feature--card:hover,
+.testimonial:hover {
+    box-shadow: 0px 0px 8px var(--accent);
+}
 
+/* ======================== RESPONSIVE ======================== */
+@media (max-width: 768px) {
+    .hero--section {
+        padding: var(--space-lg) var(--space-sm);
+        min-height: 70vh;
+    }
 
-/* authentication */
+    .features--section,
+    .testimonials--section {
+        padding: 3rem var(--space-sm);
+    }
 
-/* create post */
+    .bottom--section {
+        padding: 3rem var(--space-sm);
+    }
 
-/* getposts */
+    .features--grid {
+        grid-template-columns: 1fr;
+    }
 
+    .test--grid {
+        grid-template-columns: 1fr;
+    }
+}
 
-/* get post */
+@media (max-width: 480px) {
+    .hero--buttons {
+        flex-direction: column;
+        width: 100%;
+    }
 
-/* user dashboard */
+    .hero--buttons button {
+        width: 100%;
+    }
 
-
-/* admin post management */
+    .bottom--section p {
+        width: 100%;
+    }
+}

@@ -1,17 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import * as Icon from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 import "./sideNav.css";
+import { HeaderContext } from "../context/headerContext";
+import { useTheme } from "../context/themeContext";
 function SideNav() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [sidenavVisible, setSidenavVisible] = useState(true);
   const { user } = useContext(UserContext);
-  const [dark, setDark] = useState(true);
+  const { isDark, toggleTheme } = useTheme();
+  const { toggleSidebar, setToggleSidebar } = useContext(HeaderContext);
 
-  console.log(user?.role);
   return (
     <nav className="sideNav">
       <div className="icon--container">
@@ -84,14 +85,13 @@ function SideNav() {
         </div>
         <ul className="sidenav-bottom">
           <li
-            onClick={() => {
-              setDark(!dark);
-            }}
+            onClick={toggleTheme}
+            title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
           >
-            {dark ? (
-              <Icon.SunFill color="yellow" />
+            {isDark ? (
+              <Icon.SunFill color="#facc15" />
             ) : (
-              <Icon.MoonFill color="yellow" />
+              <Icon.MoonFill color="#6366f1" />
             )}
           </li>
           <li className="sidenav--avator">
@@ -99,7 +99,16 @@ function SideNav() {
           </li>
         </ul>
       </div>
-      {sidenavVisible && (
+      {toggleSidebar && window.innerWidth <= 700 && (
+        <div
+          className="close--sidebar-bg"
+          onClick={() => {
+            setToggleSidebar(false);
+          }}
+        ></div>
+      )}
+
+      {toggleSidebar && (
         <div className="content--container">
           <div className="top">
             <div className="logo">Mini Blog</div>
@@ -171,6 +180,15 @@ function SideNav() {
               >
                 Create post
               </li>
+              {toggleSidebar && window.innerWidth <= 700 && (
+                <Icon.XOctagonFill
+                  onClick={() => {
+                    setToggleSidebar(false);
+                  }}
+                  className="close--sidebar"
+                  size={22}
+                />
+              )}
             </ul>
           </div>
           <ul className="sidenav-bottom">
@@ -179,12 +197,6 @@ function SideNav() {
           </ul>
         </div>
       )}
-      <button
-        className={sidenavVisible ? "menu-icon" : "menu-icon open-menu"}
-        onClick={() => setSidenavVisible(!sidenavVisible)}
-      >
-        <Icon.CaretLeftFill size={30} color="white" />
-      </button>
     </nav>
   );
 }

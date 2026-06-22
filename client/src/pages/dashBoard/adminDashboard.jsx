@@ -22,7 +22,6 @@ function AdminDashboard() {
       if (data.success) {
         setData(data.data);
       }
-      alert(data.error);
     };
 
     fetchData();
@@ -197,22 +196,6 @@ function AdminDashboard() {
                   ))}
                 </tbody>
               </table>
-              {/* <li className="user_item">
-                <span>Id</span>
-                <span>Usename</span>
-                <span>Email</span>
-                <span>Role</span>
-                <span className="status">Status</span>
-              </li>
-              {data?.recentUsers?.map((user) => (
-                <li className="user_item" key={user.id}>
-                  <span>{user.id}</span>
-                  <span className="username">{user.username}</span>
-                  <span>{user.email}</span>
-                  <span>{user.role}</span>
-                  <span className="status">Active</span>
-                </li>
-              ))} */}
             </section>
             {data && (
               <ul className="recent--posts">

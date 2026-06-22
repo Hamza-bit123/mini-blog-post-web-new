@@ -105,3 +105,32 @@ textarea:focus {
 .tags span:hover {
     border: 1px solid var(--accent);
 }
+
+/* ======================== RESPONSIVE ======================== */
+@media (max-width: 768px) {
+    .flex_vertical--container {
+        padding: var(--space-sm);
+    }
+
+    .container--title {
+        font-size: var(--text-size-sm);
+    }
+
+    .imageSelector {
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form__buttons {
+        flex-direction: column;
+    }
+
+    .form__buttons button {
+        width: 100%;
+    }
+
+    .back--btn {
+        margin-bottom: var(--space-sm);
+    }
+}

@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/authRoutes");
@@ -13,7 +15,7 @@ const app = express();
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   }),
 );
@@ -23,7 +25,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api", rootRoutes);
-const port = process.env.PORT || 4000;
+
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Running on port ${port}...`);
 });

@@ -53,6 +53,10 @@
     border-radius: 10px;
 }
 
+.recent--users {
+    overflow-x: scroll;
+}
+
 .users--table {
     margin-top: var(--space-md);
     border-collapse: collapse;

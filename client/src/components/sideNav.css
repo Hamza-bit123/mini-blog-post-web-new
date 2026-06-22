@@ -1,140 +1,140 @@
+/* ======================== SIDENAV ======================== */
 .sideNav {
     box-sizing: border-box;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     height: 100vh;
     width: fit-content;
-    background-color: var(--primary);
+    background-color: var(--card);
     position: sticky;
     top: 0;
-    box-shadow: 0px 0px 1px 0.1px var(--text-color);
+    box-shadow: 1px 0 6px rgba(0,0,0,0.3);
+    z-index: 15;
+    transition: background-color 0.25s ease;
 }
 
-.sideNav .menu-icon {
-    position: absolute;
-    top: 20px;
-    right: 0px;
-    font-weight: bold;
-    background-color: var(--accent);
-    padding: 3px 5px;
-    border-radius: 30px 0px 0px 30px;
-    color: var(--heading);
-    width: 40px;
-    z-index: 12;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 1s ease-in-out
+/* ======================== ANIMATIONS ======================== */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
 
-.sideNav .open-menu {
-    transform: rotateY(180deg);
-    right: -40px;
-    animation: getToRight 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes getToRight {
-    0% {
-        right: 100px;
-    }
-
-    100% {
-        right: -40px;
-    }
-}
-
+/* ======================== CONTAINERS ======================== */
 .sideNav .icon--container,
 .sideNav .content--container {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: 0;
     justify-content: space-between;
     height: 100%;
-    padding: var(--space-md) 0;
+    padding: var(--space-sm) 0;
+    background-color: inherit;
+    z-index: inherit;
 }
 
 .sideNav .icon--container {
     background-color: var(--card);
+    min-width: 52px;
+    align-items: center;
 }
 
+/* ======================== ICON STRIP ITEMS ======================== */
 .sideNav .icon--container .top li {
-    padding: var(--space-sm);
-    transition: 0.3s ease-in-out;
+    width: 52px;
     height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+    font-size: 1.1rem;
 }
 
-.content--container li:last-child {
-    text-transform: capitalize;
-}
-
+/* ======================== CONTENT PANEL ======================== */
 .sideNav .content--container {
-    width: 250px;
+    width: 220px;
+    animation: slideIn 0.2s ease;
+    background-color: var(--primary);
+    border-right: 1px solid rgba(255,255,255,0.06);
 }
 
 .sideNav .content--container .top li {
-    padding: var(--space-sm) 0;
-    transition: 0.3s ease-in-out;
-    height: 52px;
+    padding: 0 var(--space-sm);
+    height: 48px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
+/* ======================== LOGO ======================== */
 .sideNav .logo {
     margin-bottom: 0;
     height: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    padding: 0 var(--space-sm);
+    margin-bottom: var(--space-sm);
 }
 
 .sideNav .icon--container .logo {
-    padding-left: var(--space-sm);
-}
-
-li {
-    list-style: none;
-}
-
-.sideNav .logo {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--accent);
+    padding: 0;
+    justify-content: center;
+    font-size: 1.2rem;
 }
 
 .sideNav .logo:hover {
     cursor: pointer;
 }
 
+/* ======================== NAV LISTS ======================== */
+li {
+    list-style: none;
+}
+
 .nav--lists {
     display: flex;
     flex-direction: column;
-    gap: 0;
 }
 
+/* ======================== BOTTOM STRIP ======================== */
 .sidenav-bottom {
     display: flex;
     flex-direction: column;
-    gap: 0px;
+    padding-bottom: 4px;
 }
 
 .sidenav-bottom li {
-    padding: 0;
-    height: 35px;
-    align-content: center;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 .icon--container .sidenav-bottom li {
-    text-align: center;
+    width: 52px;
 }
 
+.content--container .sidenav-bottom li {
+    justify-content: flex-start;
+    padding: 0 var(--space-sm);
+    font-size: 0.9rem;
+    text-transform: capitalize;
+    color: var(--text-color);
+}
+
+/* ======================== ACTIVE & HOVER ======================== */
 .sideNav .active {
-    background-color: var(--accent);
-    color: var(--primary);
+    background-color: var(--accent) !important;
+    color: var(--primary) !important;
     font-weight: 700;
 }
 
@@ -144,6 +144,7 @@ li {
     cursor: pointer;
 }
 
+/* ======================== AVATAR ======================== */
 .sidenav--avator {
     padding: 0 !important;
     display: flex;
@@ -152,13 +153,67 @@ li {
 }
 
 .sidenav--avator span {
-    font-size: var(--text-size-sm);
+    font-size: 0.85rem;
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    text-align: center;
-    align-content: center;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--accent);
     color: var(--primary);
     font-weight: 800;
+}
+
+/* ======================== CLOSE BUTTON ======================== */
+.close--sidebar {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: var(--accent);
+    z-index: inherit;
+    cursor: pointer;
+}
+
+/* ======================== MOBILE OVERLAY ======================== */
+.close--sidebar-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 13;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* ======================== MOBILE BREAKPOINTS ======================== */
+@media (max-width: 768px) {
+    .sideNav .content--container {
+        position: fixed;
+        top: 0;
+        left: 52px;
+        height: 100vh;
+        z-index: 14;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.4);
+    }
+}
+
+@media (max-width: 480px) {
+    .sideNav .icon--container {
+        min-width: 46px;
+    }
+
+    .sideNav .icon--container .top li {
+        width: 46px;
+        height: 46px;
+        font-size: 1rem;
+    }
+
+    .icon--container .sidenav-bottom li {
+        width: 46px;
+    }
+
+    .sideNav .content--container {
+        left: 46px;
+        width: calc(100vw - 46px);
+    }
 }
