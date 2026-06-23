@@ -13,7 +13,7 @@ function AdminDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchWithAuth(
-        "http://localhost:4000/api/dashboard/admin",
+        `${import.meta.env.VITE_BACKEND_URL}/api/dashboard/admin`,
         {
           method: "GET",
         },
@@ -210,7 +210,7 @@ function AdminDashboard() {
                   >
                     <div className="post--image_preview">
                       <img
-                        src={`http://localhost:4000/uploads/${post.image}`}
+                        src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${post.image}`}
                         alt={post.title}
                       />
                     </div>

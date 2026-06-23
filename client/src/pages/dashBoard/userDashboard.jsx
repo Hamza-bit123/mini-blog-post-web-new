@@ -12,7 +12,7 @@ function UserDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchWithAuth(
-        "http://localhost:4000/api/dashboard/user",
+        `${import.meta.env.VITE_BACKEND_URL}/api/dashboard/user`,
         { method: "GET" },
       );
       const data = await response.json();
@@ -156,7 +156,7 @@ function UserDashboard() {
             >
               <div className="post--image_preview">
                 <img
-                  src={`http://localhost:4000/uploads/${post.image}`}
+                  src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${post.image}`}
                   alt={post.title}
                 />
               </div>

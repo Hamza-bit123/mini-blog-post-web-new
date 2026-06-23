@@ -23,7 +23,7 @@ function GetPost() {
     e.preventDefault();
 
     const response = await fetchWithAuth(
-      `http://localhost:4000/api/posts/${id}`,
+      `${import.meta.env.VITE_BACKEND_URL}/api/posts/${id}`,
       { method: "DELETE" },
     );
 
@@ -49,7 +49,7 @@ function GetPost() {
   useEffect(() => {
     const fechData = async () => {
       const response = await fetchWithAuth(
-        `http://localhost:4000/api/posts/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/posts/${id}`,
         { method: "GET" },
       );
       const data = await response.json();
@@ -79,7 +79,7 @@ function GetPost() {
         <div className="category">{post.category}</div>
         {post.image && (
           <img
-            src={`http://localhost:4000/uploads/${post.image}`}
+            src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${post.image}`}
             alt={post.title}
           />
         )}

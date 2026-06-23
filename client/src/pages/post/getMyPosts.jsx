@@ -7,7 +7,7 @@ function GetMyPosts() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchWithAuth(
-        "http://localhost:4000/api/posts/me",
+        `${import.meta.env.VITE_BACKEND_URL}/api/posts/me`,
         { method: "GET" },
       );
 

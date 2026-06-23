@@ -33,8 +33,8 @@ function CreatePost() {
     formdata.append("content", formData.content);
 
     const url = id
-      ? `http://localhost:4000/api/posts/${id}`
-      : "http://localhost:4000/api/posts/create";
+      ? `${import.meta.env.VITE_BACKEND_URL}/api/posts/${id}`
+      : "${import.meta.env.VITE_BACKEND_URL}/api/posts/create";
     const method = id ? "PATCH" : "POST";
 
     let response = await fetchWithAuth(url, {
@@ -74,7 +74,7 @@ function CreatePost() {
     const fetchData = async () => {
       if (!id) return;
       const response = await fetchWithAuth(
-        `http://localhost:4000/api/posts/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/posts/${id}`,
         { method: "GET" },
       );
 
@@ -86,7 +86,9 @@ function CreatePost() {
           category: data.data.category_id,
           tag: data.data?.tags.toString(),
         });
-        setPreview(`http://localhost:4000/uploads/${data.data.image}`);
+        setPreview(
+          `${import.meta.env.VITE_BACKEND_URL}/uploads/${data.data.image}`,
+        );
       }
     };
 

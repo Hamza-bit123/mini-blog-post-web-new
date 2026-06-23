@@ -9,9 +9,12 @@ function DashboardRedirect() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetchWithAuth("http://localhost:4000/api/me", {
-          method: "POST",
-        });
+        const response = await fetchWithAuth(
+          `${import.meta.env.VITE_BACKEND_URL}/api/me`,
+          {
+            method: "POST",
+          },
+        );
         const data = await response.json();
         setUser(data.user);
       } catch (error) {

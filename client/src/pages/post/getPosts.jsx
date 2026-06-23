@@ -8,9 +8,12 @@ const GetPosts = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetchWithAuth(`http://localhost:4000/api/posts/`, {
-        method: "GET",
-      });
+      const response = await fetchWithAuth(
+        `${import.meta.env.VITE_BACKEND_URL}/api/posts/`,
+        {
+          method: "GET",
+        },
+      );
       const data = await response.json();
       setPosts(data.data.posts);
     };
