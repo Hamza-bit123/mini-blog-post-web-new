@@ -1,9 +1,12 @@
 export const RefreshToken = async () => {
   try {
-    const response = await fetch("http://localhost:4000/api/auth/refresh", {
-      method: "POST",
-      credentials: "include",
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/api/auth/refresh`,
+      {
+        method: "POST",
+        credentials: "include",
+      },
+    );
     const data = await response.json();
     if (!response.ok) {
       sessionStorage.removeItem("token");
