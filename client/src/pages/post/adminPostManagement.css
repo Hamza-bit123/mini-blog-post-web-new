@@ -96,7 +96,7 @@ th {
     }
 }
 
-@media (max-width: 425xp) {
+@media (max-width: 425px) {
     html {
         font-size: 14px;
     }
